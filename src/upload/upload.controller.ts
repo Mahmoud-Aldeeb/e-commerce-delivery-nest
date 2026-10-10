@@ -26,7 +26,8 @@ import { AuthGuard } from '../common/guards/auth/auth.guard';
 import { UploadResponseDto } from './dto/upload-response.dto';
 import { Throttle } from '@nestjs/throttler';
 
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB (also Cloudinary's free-plan limit)
+// Vercel rejects any request body above 4.5 MB before it reaches the app
+const MAX_FILE_SIZE = 4 * 1024 * 1024; // 4 MB (also Cloudinary's free-plan limit)
 const ALLOWED_TYPES = [
   'image/jpeg',
   'image/png',
@@ -87,7 +88,7 @@ export class UploadController {
     description:
       'No file, wrong field name, or the file is not an allowed image type',
   })
-  @ApiPayloadTooLargeResponse({ description: 'The image is larger than 10 MB' })
+  @ApiPayloadTooLargeResponse({ description: 'The image is larger than 4 MB' })
   @ApiInternalServerErrorResponse({
     description: 'Cloudinary rejected or failed the upload',
   })

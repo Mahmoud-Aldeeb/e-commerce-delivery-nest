@@ -5,6 +5,9 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "build": "nest build",
     "deploy": "nest deploy",
@@ -21,10 +24,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "postinstall": "prisma generate",
     "seed": "tsx src/seed/seed.ts",
-    "migrate:deploy": "prisma migrate deploy",
-    "engines": {
-      "node": ">=22"
-    }
+    "migrate:deploy": "prisma migrate deploy"
   },
   "dependencies": {
     "@nestjs/common": "^12.0.1",
@@ -47,10 +47,7 @@
     "nodemailer": "^10.0.14",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "stripe": "^23.0.0",
-    "engines": {
-      "node": ">=22"
-    }
+    "stripe": "^23.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^12.0.0",
