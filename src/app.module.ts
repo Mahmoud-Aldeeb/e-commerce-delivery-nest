@@ -15,8 +15,6 @@ import { AddressesModule } from './addresses/addresses.module.js';
 import { DeliveryModule } from './delivery/delivery.module.js';
 import { AdminModule } from './admin/admin.module.js';
 import { UploadModule } from './upload/upload.module.js';
-import { APP_GUARD } from '@nestjs/core';
-import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
@@ -29,7 +27,6 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
         signOptions: { expiresIn: '30d' },
       }),
     }),
-    ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: 100 }]),
     PrismaModule,
     CloudinaryModule,
     MailModule,
@@ -44,6 +41,6 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
     UploadModule,
   ],
   controllers: [AppController],
-  providers: [AppService, { provide: APP_GUARD, useClass: ThrottlerGuard }],
+  providers: [AppService],
 })
 export class AppModule {}

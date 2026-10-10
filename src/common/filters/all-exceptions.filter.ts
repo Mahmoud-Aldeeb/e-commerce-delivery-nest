@@ -47,14 +47,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
       const status = exception.getStatus();
       const body = exception.getResponse();
 
-      // The throttler's default text is not friendly
-      if (status === HttpStatus.TOO_MANY_REQUESTS) {
-        return res.status(status).json({
-          statusCode: status,
-          message: 'Too many requests, please try again later',
-        });
-      }
-
       return res
         .status(status)
         .json(

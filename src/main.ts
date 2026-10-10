@@ -14,6 +14,7 @@ import { PrismaService } from './prisma/prisma.service.js';
 import { MailService } from './mail/mail.service.js';
 import { inngest } from './inngest/inngest.client.js';
 import { createInngestFunctions } from './inngest/inngest.functions.js';
+import { applyRateLimits } from './common/rate-limit.js';
 
 // Nested DTO errors keep their messages in `children`, so walk down to the first one
 const firstMessage = (errors: ValidationError[]): string | undefined => {
@@ -54,6 +55,7 @@ async function bootstrap() {
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   });
+  applyRateLimits(app);
 
   app.useGlobalFilters(new AllExceptionsFilter());
 

@@ -24,7 +24,6 @@ import {
 import { CloudinaryService } from '../cloudinary/cloudinary.service.js';
 import { AuthGuard } from '../common/guards/auth/auth.guard.js';
 import { UploadResponseDto } from './dto/upload-response.dto.js';
-import { Throttle } from '@nestjs/throttler';
 
 // Vercel rejects any request body above 4.5 MB before it reaches the app
 const MAX_FILE_SIZE = 4 * 1024 * 1024; // 4 MB (also Cloudinary's free-plan limit)
@@ -65,7 +64,6 @@ export class UploadController {
   // The old API answered 200 here; Nest defaults to 201 for POST
   @Post()
   @HttpCode(HttpStatus.OK)
-  @Throttle({ default: { limit: 10, ttl: 60_000 } })
   // 'image' is the form field name the frontend already uses.
   // With no dest/storage option, multer keeps the file in memory (file.buffer).
   @UseInterceptors(

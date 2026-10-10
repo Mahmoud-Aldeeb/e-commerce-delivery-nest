@@ -11,7 +11,6 @@ import { AuthService } from './auth.service.js';
 import { RegisterDto } from './dto/register.dto.js';
 import { LoginDto } from './dto/login.dto.js';
 import { AuthResponseDto } from './dto/auth-response.dto.js';
-import { Throttle } from '@nestjs/throttler';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -19,7 +18,6 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  @Throttle({ default: { limit: 5, ttl: 60_000 } })
   @ApiOperation({ summary: 'Register a new user account' })
   @ApiCreatedResponse({
     type: AuthResponseDto,
@@ -33,7 +31,6 @@ export class AuthController {
   }
 
   @Post('login')
-  @Throttle({ default: { limit: 10, ttl: 60_000 } })
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Log in with email and password' })
   @ApiOkResponse({

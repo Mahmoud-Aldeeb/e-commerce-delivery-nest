@@ -34,7 +34,6 @@ import {
   DeliveryListResponseDto,
   LocationUpdateResponseDto,
 } from './dto/delivery-response.dto.js';
-import { Throttle } from '@nestjs/throttler';
 
 @ApiTags('Delivery')
 @ApiBearerAuth()
@@ -72,7 +71,6 @@ export class DeliveriesController {
   }
 
   @Put(':id/complete')
-  @Throttle({ default: { limit: 5, ttl: 300_000 } })
   @ApiOperation({ summary: 'Complete a delivery using the customer OTP' })
   @ApiOkResponse({ type: DeliveryActionResponseDto })
   @ApiBadRequestResponse({

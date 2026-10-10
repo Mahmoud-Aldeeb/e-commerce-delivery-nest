@@ -10,7 +10,6 @@ import {
 import { DeliveryService } from './delivery.service.js';
 import { LoginDto } from '../auth/dto/login.dto.js';
 import { PartnerLoginResponseDto } from './dto/delivery-response.dto.js';
-import { Throttle } from '@nestjs/throttler';
 
 // Public on purpose: the partner has no token yet. No guard here.
 @ApiTags('Delivery')
@@ -21,7 +20,6 @@ export class PartnerAuthController {
   // The old API answered 200 here; Nest defaults to 201 for POST
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  @Throttle({ default: { limit: 10, ttl: 60_000 } })
   @ApiOperation({ summary: 'Log in as a delivery partner' })
   @ApiOkResponse({ type: PartnerLoginResponseDto })
   @ApiBadRequestResponse({ description: 'Email or password is missing' })
