@@ -20,17 +20,17 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { ProductsService } from './products.service';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import { GetProductsQueryDto } from './dto/get-products-query.dto';
+import { ProductsService } from './products.service.js';
+import { CreateProductDto } from './dto/create-product.dto.js';
+import { UpdateProductDto } from './dto/update-product.dto.js';
+import { GetProductsQueryDto } from './dto/get-products-query.dto.js';
 import {
   ProductItemResponseDto,
   ProductListResponseDto,
-} from './dto/product-response.dto';
-import { MessageResponseDto } from '../common/dto/message-response.dto';
-import { AuthGuard } from '../common/guards/auth/auth.guard';
-import { AdminGuard } from '../common/guards/admin/admin.guard';
+} from './dto/product-response.dto.js';
+import { MessageResponseDto } from '../common/dto/message-response.dto.js';
+import { AuthGuard } from '../common/guards/auth/auth.guard.js';
+import { AdminGuard } from '../common/guards/admin/admin.guard.js';
 
 @ApiTags('Products')
 @Controller('products') // + prefix 'api' = /api/products

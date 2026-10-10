@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { OrderResponseDto } from '../../orders/dto/order-response.dto';
-import { PartnerResponseDto } from '../../delivery/dto/delivery-response.dto';
+import { OrderResponseDto } from '../../orders/dto/order-response.dto.js';
+import { PartnerResponseDto } from '../../delivery/dto/delivery-response.dto.js';
 
 export class AdminStatsResponseDto {
   @ApiProperty({ example: 120, description: 'Paid or non-card orders only' })

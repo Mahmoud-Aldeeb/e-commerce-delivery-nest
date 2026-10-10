@@ -6,10 +6,10 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Stripe from 'stripe';
-import { PrismaService } from '../prisma/prisma.service';
-import { InngestService } from '../inngest/inngest.service';
-import { Prisma } from '../generated/prisma/client';
-import { StripeService } from './stripe.service';
+import { PrismaService } from '../prisma/prisma.service.js';
+import { InngestService } from '../inngest/inngest.service.js';
+import { Prisma } from '../generated/prisma/client.js';
+import { StripeService } from './stripe.service.js';
 
 type StoredItem = { product: string; quantity: number };
 

@@ -21,22 +21,22 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { OrdersService } from './orders.service';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
-import { GetOrdersQueryDto } from './dto/get-orders-query.dto';
+import { OrdersService } from './orders.service.js';
+import { CreateOrderDto } from './dto/create-order.dto.js';
+import { UpdateOrderStatusDto } from './dto/update-order-status.dto.js';
+import { GetOrdersQueryDto } from './dto/get-orders-query.dto.js';
 import {
   CreateOrderResponseDto,
   OrderItemResultDto,
   OrderListResponseDto,
   OrderLocationResponseDto,
-} from './dto/order-response.dto';
-import { AuthGuard } from '../common/guards/auth/auth.guard';
-import { AdminGuard } from '../common/guards/admin/admin.guard';
+} from './dto/order-response.dto.js';
+import { AuthGuard } from '../common/guards/auth/auth.guard.js';
+import { AdminGuard } from '../common/guards/admin/admin.guard.js';
 import {
   CurrentUser,
   type AuthUser,
-} from '../common/decorators/current-user.decorator';
+} from '../common/decorators/current-user.decorator.js';
 
 @ApiTags('Orders')
 @ApiBearerAuth()

@@ -18,15 +18,15 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { AddressesService } from './addresses.service';
-import { CreateAddressDto } from './dto/create-address.dto';
-import { UpdateAddressDto } from './dto/update-address.dto';
-import { AddressListResponseDto } from './dto/address-response.dto';
-import { AuthGuard } from '../common/guards/auth/auth.guard';
+import { AddressesService } from './addresses.service.js';
+import { CreateAddressDto } from './dto/create-address.dto.js';
+import { UpdateAddressDto } from './dto/update-address.dto.js';
+import { AddressListResponseDto } from './dto/address-response.dto.js';
+import { AuthGuard } from '../common/guards/auth/auth.guard.js';
 import {
   CurrentUser,
   type AuthUser,
-} from '../common/decorators/current-user.decorator';
+} from '../common/decorators/current-user.decorator.js';
 
 @ApiTags('Addresses')
 @ApiBearerAuth()

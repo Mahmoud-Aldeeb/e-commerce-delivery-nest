@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional, OmitType } from '@nestjs/swagger';
-import { OrderResponseDto } from '../../orders/dto/order-response.dto';
+import { OrderResponseDto } from '../../orders/dto/order-response.dto.js';
 
 export class PartnerResponseDto {
   @ApiProperty() id: string;

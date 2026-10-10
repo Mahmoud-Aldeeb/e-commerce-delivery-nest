@@ -19,18 +19,18 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { AdminService } from './admin.service';
-import { AuthGuard } from '../common/guards/auth/auth.guard';
-import { AdminGuard } from '../common/guards/admin/admin.guard';
-import { CreateDeliveryPartnerDto } from './dto/create-delivery-partner.dto';
-import { UpdateDeliveryPartnerDto } from './dto/update-delivery-partner.dto';
-import { AssignPartnerDto } from './dto/assign-partner.dto';
+import { AdminService } from './admin.service.js';
+import { AuthGuard } from '../common/guards/auth/auth.guard.js';
+import { AdminGuard } from '../common/guards/admin/admin.guard.js';
+import { CreateDeliveryPartnerDto } from './dto/create-delivery-partner.dto.js';
+import { UpdateDeliveryPartnerDto } from './dto/update-delivery-partner.dto.js';
+import { AssignPartnerDto } from './dto/assign-partner.dto.js';
 import {
   AdminStatsResponseDto,
   PartnerItemResponseDto,
   PartnerListResponseDto,
-} from './dto/admin-response.dto';
-import { OrderItemResultDto } from '../orders/dto/order-response.dto';
+} from './dto/admin-response.dto.js';
+import { OrderItemResultDto } from '../orders/dto/order-response.dto.js';
 
 @ApiTags('Admin')
 @ApiBearerAuth()

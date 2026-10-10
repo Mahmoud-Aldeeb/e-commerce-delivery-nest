@@ -7,8 +7,8 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import type { Request } from 'express';
-import { PrismaService } from '../../../prisma/prisma.service';
-import { Role } from '../../../generated/prisma/enums';
+import { PrismaService } from '../../../prisma/prisma.service.js';
+import { Role } from '../../../generated/prisma/enums.js';
 
 @Injectable()
 export class AdminGuard implements CanActivate {

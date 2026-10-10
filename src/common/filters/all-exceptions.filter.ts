@@ -7,7 +7,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import type { Request, Response } from 'express';
-import { Prisma } from '../../generated/prisma/client';
+import { Prisma } from '../../generated/prisma/client.js';
 
 const isProduction = () => process.env.NODE_ENV === 'production';
 

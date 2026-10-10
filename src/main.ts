@@ -8,12 +8,12 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { serve } from 'inngest/express';
-import { AppModule } from './app.module';
-import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
-import { PrismaService } from './prisma/prisma.service';
-import { MailService } from './mail/mail.service';
-import { inngest } from './inngest/inngest.client';
-import { createInngestFunctions } from './inngest/inngest.functions';
+import { AppModule } from './app.module.js';
+import { AllExceptionsFilter } from './common/filters/all-exceptions.filter.js';
+import { PrismaService } from './prisma/prisma.service.js';
+import { MailService } from './mail/mail.service.js';
+import { inngest } from './inngest/inngest.client.js';
+import { createInngestFunctions } from './inngest/inngest.functions.js';
 
 // Nested DTO errors keep their messages in `children`, so walk down to the first one
 const firstMessage = (errors: ValidationError[]): string | undefined => {

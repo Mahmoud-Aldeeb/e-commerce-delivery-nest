@@ -21,9 +21,9 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { CloudinaryService } from '../cloudinary/cloudinary.service';
-import { AuthGuard } from '../common/guards/auth/auth.guard';
-import { UploadResponseDto } from './dto/upload-response.dto';
+import { CloudinaryService } from '../cloudinary/cloudinary.service.js';
+import { AuthGuard } from '../common/guards/auth/auth.guard.js';
+import { UploadResponseDto } from './dto/upload-response.dto.js';
 import { Throttle } from '@nestjs/throttler';
 
 // Vercel rejects any request body above 4.5 MB before it reaches the app

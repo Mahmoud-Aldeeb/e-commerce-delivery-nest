@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ApiExcludeController } from '@nestjs/swagger';
 import type { Request } from 'express';
-import { StripeWebhookService } from './stripe-webhook.service';
+import { StripeWebhookService } from './stripe-webhook.service.js';
 import { SkipThrottle } from '@nestjs/throttler';
 
 // Called by Stripe's servers, not by users: hidden from Swagger, no AuthGuard.

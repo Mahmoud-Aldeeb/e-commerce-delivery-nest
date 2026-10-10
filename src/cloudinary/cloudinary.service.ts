@@ -4,7 +4,10 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { v2 as cloudinary } from 'cloudinary';
+// import { v2 as cloudinary } from 'cloudinary';
+import cloudinaryPackage from 'cloudinary';
+
+const cloudinary = cloudinaryPackage.v2;
 
 @Injectable()
 export class CloudinaryService {

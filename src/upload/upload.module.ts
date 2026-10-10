@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { CloudinaryModule } from '../cloudinary/cloudinary.module';
-import { UploadController } from './upload.controller';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module.js';
+import { UploadController } from './upload.controller.js';
 
 @Module({
   // CloudinaryModule is not global, so we import it to get CloudinaryService

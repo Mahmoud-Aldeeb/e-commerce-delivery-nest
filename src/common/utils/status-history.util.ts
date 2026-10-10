@@ -1,4 +1,4 @@
-import { Prisma } from '../../generated/prisma/client';
+import { Prisma } from '../../generated/prisma/client.js';
 
 // Returns a NEW history array with one more entry (never mutates the stored one)
 export function appendStatusHistory(

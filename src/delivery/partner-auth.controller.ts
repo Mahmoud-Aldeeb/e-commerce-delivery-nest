@@ -7,9 +7,9 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { DeliveryService } from './delivery.service';
-import { LoginDto } from '../auth/dto/login.dto';
-import { PartnerLoginResponseDto } from './dto/delivery-response.dto';
+import { DeliveryService } from './delivery.service.js';
+import { LoginDto } from '../auth/dto/login.dto.js';
+import { PartnerLoginResponseDto } from './dto/delivery-response.dto.js';
 import { Throttle } from '@nestjs/throttler';
 
 // Public on purpose: the partner has no token yet. No guard here.

@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { inngest } from './inngest.client';
+import { inngest } from './inngest.client.js';
 
 @Injectable()
 export class InngestService {

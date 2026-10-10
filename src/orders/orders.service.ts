@@ -1,10 +1,10 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { StripeService } from '../stripe/stripe.service';
-import { InngestService } from '../inngest/inngest.service';
-import { Prisma } from '../generated/prisma/client';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
+import { PrismaService } from '../prisma/prisma.service.js';
+import { StripeService } from '../stripe/stripe.service.js';
+import { InngestService } from '../inngest/inngest.service.js';
+import { Prisma } from '../generated/prisma/client.js';
+import { CreateOrderDto } from './dto/create-order.dto.js';
+import { UpdateOrderStatusDto } from './dto/update-order-status.dto.js';
 
 // Card orders stay hidden until Stripe confirms the payment
 export const HIDE_UNPAID_CARD_ORDERS: Prisma.OrderWhereInput = {

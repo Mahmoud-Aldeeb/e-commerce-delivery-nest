@@ -7,7 +7,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { COORDINATES_MESSAGE } from './create-address.dto';
+import { COORDINATES_MESSAGE } from './create-address.dto.js';
 
 // Written out in full (instead of PartialType) because lat/lng stay required on update
 export class UpdateAddressDto {

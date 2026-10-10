@@ -1,9 +1,9 @@
 import 'dotenv/config';
-import * as bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 import { PrismaNeon } from '@prisma/adapter-neon';
-import { PrismaClient } from '../generated/prisma/client';
-import { Role } from '../generated/prisma/enums';
-import { buildProducts } from './products.data';
+import { PrismaClient } from '../generated/prisma/client.js';
+import { Role } from '../generated/prisma/enums.js';
+import { buildProducts } from './products.data.js';
 
 const prisma = new PrismaClient({
   adapter: new PrismaNeon({ connectionString: process.env.DATABASE_URL! }),

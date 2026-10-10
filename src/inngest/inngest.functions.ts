@@ -2,16 +2,16 @@ import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { cron } from 'inngest';
 import { randomInt } from 'crypto';
-import { PrismaService } from '../prisma/prisma.service';
-import { MailService } from '../mail/mail.service';
-import { Role } from '../generated/prisma/enums';
-import { inngest } from './inngest.client';
-import { lowStockEmail, monthlyOffersEmail } from './email-templates';
+import { PrismaService } from '../prisma/prisma.service.js';
+import { MailService } from '../mail/mail.service.js';
+import { Role } from '../generated/prisma/enums.js';
+import { inngest } from './inngest.client.js';
+import { lowStockEmail, monthlyOffersEmail } from './email-templates.js';
 import {
   ACTIVE_STATUSES,
   FINISHED_STATUSES,
-} from '../common/constants/order-status.constants';
-import { appendStatusHistory } from '../common/utils/status-history.util';
+} from '../common/constants/order-status.constants.js';
+import { appendStatusHistory } from '../common/utils/status-history.util.js';
 
 const LOW_STOCK_THRESHOLD = 10;
 const EMAIL_BATCH_SIZE = 10;

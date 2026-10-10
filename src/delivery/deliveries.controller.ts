@@ -17,23 +17,23 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { DeliveryService } from './delivery.service';
-import { DeliveryAuthGuard } from '../common/guards/delivery-auth/delivery-auth.guard';
+import { DeliveryService } from './delivery.service.js';
+import { DeliveryAuthGuard } from '../common/guards/delivery-auth/delivery-auth.guard.js';
 import {
   CurrentPartner,
   type AuthPartner,
-} from '../common/decorators/current-partner.decorator';
-import { GetDeliveriesQueryDto } from './dto/get-deliveries-query.dto';
-import { CompleteDeliveryDto } from './dto/complete-delivery.dto';
-import { CancelDeliveryDto } from './dto/cancel-delivery.dto';
-import { UpdateDeliveryStatusDto } from './dto/update-delivery-status.dto';
-import { UpdateLocationDto } from './dto/update-location.dto';
+} from '../common/decorators/current-partner.decorator.js';
+import { GetDeliveriesQueryDto } from './dto/get-deliveries-query.dto.js';
+import { CompleteDeliveryDto } from './dto/complete-delivery.dto.js';
+import { CancelDeliveryDto } from './dto/cancel-delivery.dto.js';
+import { UpdateDeliveryStatusDto } from './dto/update-delivery-status.dto.js';
+import { UpdateLocationDto } from './dto/update-location.dto.js';
 import {
   DeliveryActionResponseDto,
   DeliveryItemResponseDto,
   DeliveryListResponseDto,
   LocationUpdateResponseDto,
-} from './dto/delivery-response.dto';
+} from './dto/delivery-response.dto.js';
 import { Throttle } from '@nestjs/throttler';
 
 @ApiTags('Delivery')

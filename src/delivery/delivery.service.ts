@@ -6,19 +6,19 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
-import { PrismaService } from '../prisma/prisma.service';
-import { Prisma } from '../generated/prisma/client';
-import { appendStatusHistory } from '../common/utils/status-history.util';
-import { LoginDto } from '../auth/dto/login.dto';
-import { CompleteDeliveryDto } from './dto/complete-delivery.dto';
-import { CancelDeliveryDto } from './dto/cancel-delivery.dto';
-import { UpdateDeliveryStatusDto } from './dto/update-delivery-status.dto';
-import { UpdateLocationDto } from './dto/update-location.dto';
+import bcrypt from 'bcrypt';
+import { PrismaService } from '../prisma/prisma.service.js';
+import { Prisma } from '../generated/prisma/client.js';
+import { appendStatusHistory } from '../common/utils/status-history.util.js';
+import { LoginDto } from '../auth/dto/login.dto.js';
+import { CompleteDeliveryDto } from './dto/complete-delivery.dto.js';
+import { CancelDeliveryDto } from './dto/cancel-delivery.dto.js';
+import { UpdateDeliveryStatusDto } from './dto/update-delivery-status.dto.js';
+import { UpdateLocationDto } from './dto/update-location.dto.js';
 import {
   ACTIVE_STATUSES,
   FINISHED_STATUSES,
-} from '../common/constants/order-status.constants';
+} from '../common/constants/order-status.constants.js';
 
 // The OTP belongs to the customer: it must never be sent to the delivery partner
 const HIDE_OTP = { deliveryOtp: true } as const;

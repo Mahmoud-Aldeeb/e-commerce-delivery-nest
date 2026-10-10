@@ -4,16 +4,16 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 import { randomInt } from 'crypto';
-import { PrismaService } from '../prisma/prisma.service';
-import { Prisma } from '../generated/prisma/client';
-import { HIDE_UNPAID_CARD_ORDERS } from '../orders/orders.service';
-import { FINISHED_STATUSES } from '../common/constants/order-status.constants';
-import { appendStatusHistory } from '../common/utils/status-history.util';
-import { CreateDeliveryPartnerDto } from './dto/create-delivery-partner.dto';
-import { UpdateDeliveryPartnerDto } from './dto/update-delivery-partner.dto';
-import { AssignPartnerDto } from './dto/assign-partner.dto';
+import { PrismaService } from '../prisma/prisma.service.js';
+import { Prisma } from '../generated/prisma/client.js';
+import { HIDE_UNPAID_CARD_ORDERS } from '../orders/orders.service.js';
+import { FINISHED_STATUSES } from '../common/constants/order-status.constants.js';
+import { appendStatusHistory } from '../common/utils/status-history.util.js';
+import { CreateDeliveryPartnerDto } from './dto/create-delivery-partner.dto.js';
+import { UpdateDeliveryPartnerDto } from './dto/update-delivery-partner.dto.js';
+import { AssignPartnerDto } from './dto/assign-partner.dto.js';
 
 // The password hash must never leave the server
 const HIDE_PASSWORD = { password: true } as const;
