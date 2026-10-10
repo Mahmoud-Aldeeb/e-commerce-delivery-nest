@@ -1,0 +1,137 @@
+import {
+  Body,
+  Controller,
+  Get,
+  Headers,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiForbiddenResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
+import { OrdersService } from './orders.service';
+import { CreateOrderDto } from './dto/create-order.dto';
+import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
+import { GetOrdersQueryDto } from './dto/get-orders-query.dto';
+import {
+  CreateOrderResponseDto,
+  OrderItemResultDto,
+  OrderListResponseDto,
+  OrderLocationResponseDto,
+} from './dto/order-response.dto';
+import { AuthGuard } from '../common/guards/auth/auth.guard';
+import { AdminGuard } from '../common/guards/admin/admin.guard';
+import {
+  CurrentUser,
+  type AuthUser,
+} from '../common/decorators/current-user.decorator';
+
+@ApiTags('Orders')
+@ApiBearerAuth()
+@ApiUnauthorizedResponse({ description: 'Missing or invalid token' })
+// Every route here needs a logged-in user, so the guard goes on the class.
+// Class-level guards run before method-level guards (e.g. AdminGuard below).
+@UseGuards(AuthGuard)
+@Controller('orders')
+export class OrdersController {
+  constructor(private readonly ordersService: OrdersService) {}
+
+  @Post()
+  // The old API answered 200 for this route; Nest defaults to 201 for POST
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary:
+      'Place an order. Card payments return a Stripe checkout URL, others return the order',
+  })
+  @ApiOkResponse({ type: CreateOrderResponseDto })
+  @ApiBadRequestResponse({
+    description:
+      'No items, invalid quantity, or missing shipping address / payment method',
+  })
+  @ApiNotFoundResponse({
+    description: 'A product is out of stock or does not exist',
+  })
+  createOrder(
+    @CurrentUser() user: AuthUser,
+    @Body() dto: CreateOrderDto,
+    // Used to build Stripe's success and cancel URLs
+    @Headers('origin') origin?: string,
+  ) {
+    return this.ordersService.createOrder(user.id, dto, origin);
+  }
+
+  @Get()
+  @ApiOperation({
+    summary: 'List the current user orders (unpaid card orders are hidden)',
+  })
+  @ApiOkResponse({ type: OrderListResponseDto })
+  getUserOrders(
+    @CurrentUser() user: AuthUser,
+    @Query() query: GetOrdersQueryDto,
+  ) {
+    return this.ordersService.getUserOrders(user.id, query.status);
+  }
+
+  // Must stay above @Get(':id'), otherwise ":id" would capture the word "all"
+  @Get('all')
+  @UseGuards(AdminGuard)
+  @ApiOperation({ summary: 'List all orders (admin only)' })
+  @ApiOkResponse({ type: OrderListResponseDto })
+  @ApiForbiddenResponse({ description: 'Admin access required' })
+  getAllOrders() {
+    return this.ordersService.getAllOrders();
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get one of the current user orders by id' })
+  @ApiOkResponse({ type: OrderItemResultDto })
+  @ApiNotFoundResponse({
+    description: 'Order not found (or it belongs to another user)',
+  })
+  getOrder(@CurrentUser() user: AuthUser, @Param('id') id: string) {
+    return this.ordersService.getOrder(user.id, id);
+  }
+
+  @Put(':id/status')
+  @UseGuards(AdminGuard)
+  @ApiOperation({
+    summary:
+      'Update an order status and append it to the status history (admin only)',
+  })
+  @ApiOkResponse({ type: OrderItemResultDto })
+  @ApiBadRequestResponse({ description: 'Status is missing' })
+  @ApiForbiddenResponse({ description: 'Admin access required' })
+  @ApiNotFoundResponse({ description: 'Order not found' })
+  updateOrderStatus(
+    @Param('id') id: string,
+    @Body() dto: UpdateOrderStatusDto,
+  ) {
+    return this.ordersService.updateOrderStatus(id, dto);
+  }
+
+  // PUT (not GET) on purpose: this is how the existing frontend calls it
+  @Put(':id/location')
+  @ApiOperation({
+    summary:
+      'Get the live location and status of one of the current user orders',
+  })
+  @ApiOkResponse({ type: OrderLocationResponseDto })
+  @ApiNotFoundResponse({
+    description: 'Order not found (or it belongs to another user)',
+  })
+  getOrderLocation(@CurrentUser() user: AuthUser, @Param('id') id: string) {
+    return this.ordersService.getOrderLocation(user.id, id);
+  }
+}
